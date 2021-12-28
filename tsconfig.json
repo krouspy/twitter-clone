@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components": ["src/components/index.tsx"],
-      "@/routers": ["src/server/routers/_app.ts"],
+      "@/server/*": ["src/server/*"],
+      "@/prisma": ["prisma/client.ts"],
       "@/trpc": ["src/pages/api/trpc/[trpc].ts"],
       "@/utils": ["src/utils/index.ts"]
     }
