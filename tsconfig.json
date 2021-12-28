@@ -20,7 +20,8 @@
       "@/server/*": ["src/server/*"],
       "@/prisma": ["prisma/client.ts"],
       "@/trpc": ["src/pages/api/trpc/[trpc].ts"],
-      "@/utils": ["src/utils/index.ts"]
+      "@/utils": ["src/utils/index.ts"],
+      "@/constants": ["constants/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

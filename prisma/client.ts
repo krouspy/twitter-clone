@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { __is_prod__ } from '@/constants';
 
 declare global {
   var prisma: PrismaClient | undefined;
@@ -7,7 +8,7 @@ declare global {
 export const prisma =
   global.prisma ||
   new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+    log: !__is_prod__ ? ['query', 'error', 'warn'] : ['error'],
   });
 
-if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
+if (!__is_prod__) global.prisma = prisma;
