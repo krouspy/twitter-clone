@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id              Int    @id @default(autoincrement())
+  name            String @db.VarChar(50)
+  username        String @db.VarChar(50)
+  totalLikes      Int?   @default(0)
+  totalTweets     Int?   @default(0)
+  totalFollowings Int?   @default(0)
+  totalFollowers  Int?   @default(0)
+}
+
+model tweets {
+  id        Int    @id @default(autoincrement())
+  creatorId Int
+  content   String @db.VarChar(280)
+  likes     Int?   @default(0)
+  retweets  Int?   @default(0)
+}

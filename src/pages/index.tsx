@@ -3,8 +3,9 @@ import Head from 'next/head';
 import { trpc } from '@/utils';
 
 const Home: NextPage = () => {
-  const hello = trpc.useQuery(['hello', { text: 'client' }]);
-  if (!hello.data) {
+  const { data } = trpc.useQuery(['users.all']);
+
+  if (!data) {
     return <div>loading...</div>;
   }
 
@@ -17,7 +18,6 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <h1 className="text-3xl font-bold underline">Hello World!</h1>
-        <h1 className="text-xl  underline">{hello.data.greeting}</h1>
       </main>
     </div>
   );

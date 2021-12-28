@@ -1,7 +1,10 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { withTRPC } from '@trpc/next';
-import { AppRouter } from './api/trpc/[trpc]';
+import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
+import { loggerLink } from '@trpc/client/links/loggerLink';
+import { AppRouter } from '@/server/routers/_app';
+import superjson from 'superjson';
 
 function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
@@ -11,8 +14,26 @@ export default withTRPC<AppRouter>({
   config() {
     const url = 'http://localhost:3000/api/trpc';
     return {
-      url,
+      links: [
+        loggerLink({
+          enabled: opts =>
+            process.env.NODE_ENV === 'development' ||
+            (opts.direction === 'down' && opts.result instanceof Error),
+        }),
+        httpBatchLink({
+          url,
+        }),
+      ],
+      transformer: superjson,
     };
   },
   ssr: true,
+  responseMeta({ clientErrors }) {
+    if (clientErrors.length) {
+      return {
+        status: clientErrors[0].data?.httpStatus ?? 500,
+      };
+    }
+    return {};
+  },
 })(App);
