@@ -6,12 +6,15 @@ import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
 import { loggerLink } from '@trpc/client/links/loggerLink';
 import superjson from 'superjson';
 import { AppRouter } from '@/server/routers/_app';
+import { Layout } from '@/components';
 import { __is_prod__ } from '@/constants';
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ChakraProvider>
   );
 }
