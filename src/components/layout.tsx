@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack, Grid, GridItem, Text } from '@chakra-ui/react';
-import { Sidebar } from '@/components';
+import { Sidebar, Suggestions } from '@/components';
 import { colors } from '@/constants';
 
 export const Layout: React.FC = ({ children }) => {
@@ -21,7 +21,7 @@ export const Layout: React.FC = ({ children }) => {
         </GridItem>
         <GridItem colSpan={2}>{children}</GridItem>
         <GridItem colSpan={1}>
-          <Text>Hello</Text>
+          <Suggestions />
         </GridItem>
       </Grid>
     </Stack>
