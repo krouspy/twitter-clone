@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '@/utils';
+import { Stack, Text } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
   const { data } = trpc.useQuery(['users.all']);
@@ -17,7 +18,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="text-3xl font-bold underline">Hello World!</h1>
+        <Stack>
+          <Text fontSize="xl">Hello World!</Text>
+        </Stack>
       </main>
     </div>
   );

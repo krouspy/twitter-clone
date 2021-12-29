@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
+import { ChakraProvider } from '@chakra-ui/react';
 import { withTRPC } from '@trpc/next';
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
 import { loggerLink } from '@trpc/client/links/loggerLink';
@@ -8,7 +9,11 @@ import { AppRouter } from '@/server/routers/_app';
 import { __is_prod__ } from '@/constants';
 
 function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <ChakraProvider>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  );
 }
 
 export default withTRPC<AppRouter>({
