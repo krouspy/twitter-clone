@@ -1,19 +1,19 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import { Stack, Text } from '@chakra-ui/react';
+import { Stack, Text, Divider } from '@chakra-ui/react';
+import { TweetInput } from '@/components';
+import { colors } from '@/constants';
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <Head>
-        <title>Twitter Clone</title>
-        <meta name="description" content="Twitter Clone" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Stack w="100%" bg="blue.500">
-        <Text fontSize="xl">Hello World!</Text>
+    <Stack w="100%" spacing={4} direction="column" pt="2%">
+      <Stack direction="column" px="2%" spacing={4}>
+        <Text fontSize="xl" fontWeight="bold">
+          Home
+        </Text>
+        <TweetInput />
       </Stack>
-    </div>
+      <Divider bgColor={colors.gray} />
+    </Stack>
   );
 };
 
