@@ -1,29 +1,35 @@
 import React from 'react';
-import { Stack, Grid, GridItem, Text } from '@chakra-ui/react';
+import Head from 'next/head';
+import { Stack, Flex, Box } from '@chakra-ui/react';
 import { Sidebar, Suggestions } from '@/components';
 import { colors } from '@/constants';
 
+const borderWidth = '0.5px';
+
 export const Layout: React.FC = ({ children }) => {
   return (
-    <Stack
-      as="main"
-      w="100vw"
-      maxW="100vw"
-      minH="100vh"
-      px={{ base: '5%', lg: '10%', xl: '15%' }}
-      py="1%"
-      bg={colors.dark}
-      color={colors.white}
-    >
-      <Grid h="100%" templateColumns="repeat(4, 1fr)">
-        <GridItem colSpan={1}>
+    <Stack as="main" w="100vw" maxW="100vw" minH="100vh" bg={colors.dark} color={colors.white}>
+      <Head>
+        <title>Twitter Clone</title>
+        <meta name="description" content="Twitter Clone" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Flex h="100vh" mx={{ base: '5%', lg: '10%', xl: '15%' }}>
+        <Box w="25%">
           <Sidebar />
-        </GridItem>
-        <GridItem colSpan={2}>{children}</GridItem>
-        <GridItem colSpan={1}>
+        </Box>
+        <Box
+          w="50%"
+          borderLeftWidth={borderWidth}
+          borderRightWidth={borderWidth}
+          borderColor={colors.gray}
+        >
+          {children}
+        </Box>
+        <Box w="25%">
           <Suggestions />
-        </GridItem>
-      </Grid>
+        </Box>
+      </Flex>
     </Stack>
   );
 };
