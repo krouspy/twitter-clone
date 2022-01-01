@@ -5,7 +5,11 @@ import { colors } from '@/constants';
 
 export const UserCard = () => {
   return (
-    <HStack direction="row">
+    <HStack
+      direction="row"
+      p="2"
+      _hover={{ bg: colors.darkGray, borderRadius: '30', cursor: 'pointer' }}
+    >
       <Avatar />
       <Stack direction="column" spacing="0">
         <Text>John Doe</Text>
