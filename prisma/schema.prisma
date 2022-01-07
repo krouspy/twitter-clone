@@ -8,13 +8,15 @@ datasource db {
 }
 
 model users {
-  id              Int    @id @default(autoincrement())
-  name            String @db.VarChar(50)
-  username        String @db.VarChar(50)
-  totalLikes      Int?   @default(0)
-  totalTweets     Int?   @default(0)
-  totalFollowings Int?   @default(0)
-  totalFollowers  Int?   @default(0)
+  id              Int     @id @default(autoincrement())
+  name            String  @db.VarChar(50)
+  username        String  @db.VarChar(50)
+  totalLikes      Int?    @default(0)
+  totalTweets     Int?    @default(0)
+  totalFollowings Int?    @default(0)
+  totalFollowers  Int?    @default(0)
+  jwt             String @db.VarChar(255)
+  password        String  @db.VarChar(255)
 }
 
 model tweets {
