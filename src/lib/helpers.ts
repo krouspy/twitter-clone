@@ -1,3 +1,8 @@
+// remove all spaces from name
+export function getUsernameFromName(name: string) {
+  return name.replace(/\s/g, '');
+}
+
 export function jsonResponse(status: number, data: any, init?: ResponseInit) {
   return new Response(JSON.stringify(data), {
     ...init,

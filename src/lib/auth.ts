@@ -3,22 +3,23 @@ import { NextResponse } from 'next/server';
 import { SignJWT, jwtVerify } from 'jose';
 import { nanoid } from 'nanoid';
 import { __jwt__ } from '@/constants';
-import { jsonResponse } from './utils';
+import { jsonResponse } from './helpers';
 
-export async function setUserCookie(request: NextRequest, response: NextResponse) {
-  const cookie = request.cookies[__jwt__.name];
+export async function getUserJWT(request: NextRequest) {
+  return request.cookies[__jwt__.name];
+}
 
-  if (!cookie) {
-    const token = await new SignJWT({})
-      .setProtectedHeader({ alg: 'HS256' })
-      .setJti(nanoid())
-      .setIssuedAt()
-      .setExpirationTime('1h')
-      .sign(new TextEncoder().encode(__jwt__.secret));
+export async function createJWT() {
+  return await new SignJWT({})
+    .setProtectedHeader({ alg: 'HS256' })
+    .setJti(nanoid())
+    .setIssuedAt()
+    .setExpirationTime('1h')
+    .sign(new TextEncoder().encode(__jwt__.secret));
+}
 
-    response.cookie(__jwt__.name, token, { httpOnly: true });
-  }
-
+export function setUserCookie(token: string, response: NextResponse) {
+  response.cookie(__jwt__.name, token, { httpOnly: true });
   return response;
 }
 
