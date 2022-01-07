@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { Box, Stack, Button } from '@chakra-ui/react';
+import { Box, Stack, Button, Spacer } from '@chakra-ui/react';
 import { TweetButton } from '@/components';
+import UserCard from './user-card';
 import buttonsData from './data';
 
 export const Sidebar: React.FC = () => {
   return (
-    <Stack direction="column" spacing="5" mx="7%">
+    <Stack direction="column" h="100%" spacing="5" mx="12%" pt="3%" pb="6%">
       {buttonsData.map(({ id, label, Icon, href }, index) => {
         const isFirstItem = index === 0;
         return (
@@ -25,6 +26,8 @@ export const Sidebar: React.FC = () => {
         );
       })}
       <TweetButton size="lg" />
+      <Spacer />
+      <UserCard />
     </Stack>
   );
 };
